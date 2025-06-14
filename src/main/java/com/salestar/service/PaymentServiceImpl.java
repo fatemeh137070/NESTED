@@ -11,8 +11,10 @@ import com.salestar.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -215,6 +217,19 @@ public class PaymentServiceImpl implements PaymentService {
 
             return dto;
         }).collect(Collectors.toList());
+    }
+
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void processPayment(Order order, String method) {
+        PaymentTransaction tx = new PaymentTransaction();
+        tx.setOrder(order);
+        tx.setAmount(order.getProduct().getPrice().multiply(BigDecimal.valueOf(order.getQuantity())));
+        tx.setMethod(method);
+        tx.setStatus("SUCCESS");
+        tx.setTransactionDate(LocalDateTime.now());
+        transactionRepository.save(tx);
     }
 }
 

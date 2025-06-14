@@ -10,11 +10,13 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime orderDate;
+
     @ManyToOne
     private Product product;
+
     private int quantity;
-    private String status; // PENDING, PAID, CANCELED
+    private LocalDateTime orderDate;
+    private String status;
     // Getters & Setters
 
 

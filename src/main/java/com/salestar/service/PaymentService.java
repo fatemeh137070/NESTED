@@ -10,6 +10,6 @@ public interface PaymentService {
     void purchaseProduct(Long productId, int quantity);
 
     List<OrderSummaryDto> getAllOrders();
+    void processPayment(Order order, String method);
 
-//    void processPayment(Order order, String method);
 }

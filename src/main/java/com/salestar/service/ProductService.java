@@ -8,5 +8,6 @@ import java.util.List;
 public interface ProductService {
     ProductDto createProduct(ProductDto dto);
     List<ProductDto> getAllProducts();
-    void reduceStock(Long productId, int quantity);
+    void purchaseProductOrchestration(Long productId, int quantity);
+    void purchaseProductChoreography(Long productId, int quantity);
 }

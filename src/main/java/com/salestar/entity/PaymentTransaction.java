@@ -10,25 +10,18 @@ public class PaymentTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal amount;
-    private String method; // CREDIT_CARD, PAYPAL
-    private LocalDateTime transactionDate;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "order_id", nullable = false)
-    @OneToOne
+
+    @ManyToOne
     private Order order;
+
+    private BigDecimal amount;
+    private String method;
     private String status;
-    private LocalDateTime paymentTime;// SUCCESS, FAILED
+    private LocalDateTime transactionDate;
+
     // Getters & Setters
 
 
-    public LocalDateTime getPaymentTime() {
-        return paymentTime;
-    }
-
-    public void setPaymentTime(LocalDateTime paymentTime) {
-        this.paymentTime = paymentTime;
-    }
 
     public Long getId() {
         return id;

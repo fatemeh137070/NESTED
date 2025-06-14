@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 
-    @Before("execution(* com.sales.service.*.*(..))")
-    public void logBefore(JoinPoint joinPoint) {
-        System.out.println("[LOG] Before: " + joinPoint.getSignature().getName());
+    @Before("execution(* com.salestar.service.*.*(..))")
+    public void logBefore() {
+        System.out.println("🔍 Service method called");
     }
 }
